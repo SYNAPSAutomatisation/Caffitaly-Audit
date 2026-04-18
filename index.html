@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -31,7 +32,6 @@
     overflow-x: hidden;
   }
 
-  /* Subtle grain texture overlay */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -104,9 +104,7 @@
     transition: color 0.25s;
   }
 
-  .step-item.active {
-    border-bottom-color: var(--gold);
-  }
+  .step-item.active { border-bottom-color: var(--gold); }
   .step-item.active .step-num { color: var(--gold); }
   .step-item.active .step-label { color: var(--cream); }
 
@@ -148,9 +146,7 @@
     margin-bottom: 16px;
   }
 
-  .welcome-title em {
-    font-style: italic; color: var(--gold-light);
-  }
+  .welcome-title em { font-style: italic; color: var(--gold-light); }
 
   .welcome-sub {
     font-size: 15px; font-weight: 300; color: var(--muted);
@@ -162,9 +158,7 @@
     margin-bottom: 56px;
   }
 
-  .meta-item {
-    text-align: center;
-  }
+  .meta-item { text-align: center; }
 
   .meta-num {
     font-family: 'Cormorant Garamond', serif;
@@ -207,14 +201,12 @@
 
   /* ─── SECTION SCREENS ───────────────────────── */
   .section-screen {
-    padding: 56px 40px 40px;
+    padding: 56px 40px 0;
     min-height: calc(100vh - 140px);
     display: flex; flex-direction: column;
   }
 
-  .section-header {
-    margin-bottom: 40px;
-  }
+  .section-header { margin-bottom: 40px; }
 
   .section-eyebrow {
     font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
@@ -302,9 +294,7 @@
   .opt-item:hover { background: rgba(201,150,61,0.06); border-color: var(--border); }
 
   .opt-item input[type=checkbox],
-  .opt-item input[type=radio] {
-    display: none;
-  }
+  .opt-item input[type=radio] { display: none; }
 
   .opt-box {
     width: 18px; height: 18px; flex-shrink: 0;
@@ -349,10 +339,7 @@
     font-size: 13px; font-weight: 300; color: var(--cream); line-height: 1.4;
   }
 
-  .opt-sub-input {
-    display: none; margin-top: 8px; margin-left: 30px;
-  }
-
+  .opt-sub-input { display: none; margin-top: 8px; margin-left: 30px; }
   .opt-sub-input.visible { display: block; }
 
   /* ─── NOTE BOX ───────────────────────────────── */
@@ -367,55 +354,90 @@
     margin-top: -8px;
   }
 
-  /* ─── NAV BUTTONS ────────────────────────────── */
-  .nav-bar {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 32px 40px 40px;
+  /* ─── SCROLL HINT ────────────────────────────── */
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 36px 40px 44px;
     border-top: 1px solid var(--border);
-    margin-top: auto;
+    margin-top: 40px;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity 0.25s;
+    user-select: none;
   }
 
-  .btn-prev {
-    display: flex; align-items: center; gap: 10px;
-    background: transparent;
-    border: 1px solid var(--border);
+  .scroll-hint:hover { opacity: 1; }
+
+  .scroll-hint-text {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .scroll-chevron-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .scroll-chevron {
+    width: 14px; height: 14px;
+    border-right: 1.5px solid var(--gold);
+    border-bottom: 1.5px solid var(--gold);
+    transform: rotate(45deg);
+    animation: bounce 1.6s ease-in-out infinite;
+  }
+
+  .scroll-chevron:nth-child(2) {
+    animation-delay: 0.18s;
+    opacity: 0.55;
+  }
+
+  .scroll-chevron:nth-child(3) {
+    animation-delay: 0.36s;
+    opacity: 0.25;
+  }
+
+  @keyframes bounce {
+    0%, 60%, 100% { transform: rotate(45deg) translateY(0); }
+    30%            { transform: rotate(45deg) translateY(5px); }
+  }
+
+  /* ─── SUBMIT BLOCK ───────────────────────────── */
+  .submit-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 36px 40px 48px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  .submit-hint {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--muted);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 400;
-    padding: 12px 24px; cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
   }
-
-  .btn-prev:hover { border-color: var(--gold); color: var(--gold); }
-
-  .btn-next {
-    display: flex; align-items: center; gap: 10px;
-    background: var(--navy);
-    border: 1px solid rgba(46,134,171,0.4);
-    color: var(--cream);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 400;
-    padding: 12px 28px; cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
-  }
-
-  .btn-next:hover { background: var(--blue); border-color: var(--blue); }
 
   .btn-submit {
+    display: inline-flex; align-items: center; gap: 12px;
     background: var(--gold);
     color: var(--espresso);
-    border-color: var(--gold);
-    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500; letter-spacing: 0.06em;
+    padding: 16px 40px;
+    border: none; cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
   }
 
-  .btn-submit:hover { background: var(--gold-light); }
-
-  .nav-progress-text {
-    font-size: 11px; letter-spacing: 0.1em;
-    color: var(--muted); text-transform: uppercase;
-  }
+  .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
 
   /* ─── THANK YOU SCREEN ───────────────────────── */
   #screen-done {
@@ -498,8 +520,8 @@
   @media (max-width: 600px) {
     header { padding: 20px; }
     .progress-wrap { padding: 0 20px; }
-    .section-screen, #screen-done, #screen-welcome { padding: 40px 20px 32px; }
-    .nav-bar { padding: 24px 20px; }
+    .section-screen, #screen-done, #screen-welcome { padding: 40px 20px 0; }
+    .scroll-hint, .submit-block { padding: 28px 20px 36px; }
     .field-group { grid-template-columns: 1fr; }
     .welcome-title { font-size: 40px; }
     .section-title { font-size: 30px; }
@@ -704,8 +726,7 @@ const sections = [
         options: ['Non', 'Oui, mais je ne la gère pas', 'Oui, je la mets à jour régulièrement'] },
       { id: 'q25', type: 'checkbox', label: 'Êtes-vous présent sur les réseaux sociaux ?',
         options: ['Non', 'Facebook', 'Instagram', 'LinkedIn', 'Autre'],
-        other: [4],
-        subtext: [null, null, null, null, null] },
+        other: [4] },
       { id: 'q26', type: 'radio', label: 'Avez-vous une newsletter ou liste email pour communiquer avec vos clients ?',
         options: ['Non', 'Oui, mais peu utilisée', 'Oui, régulièrement'] }
     ]
@@ -824,7 +845,6 @@ function buildSections() {
           }
         });
 
-        // Handle conditional questions triggered by checkboxes
         if (q.subtext) {
           q.subtext.forEach((condId, oi) => {
             if (condId) {
@@ -851,20 +871,36 @@ function buildSections() {
       }
     });
 
-    // Nav bar
-    const nav = document.createElement('div');
-    nav.className = 'nav-bar';
+    // ── Scroll hint or submit block (replaces old nav-bar) ──
     const isLast = si === sections.length - 1;
-    nav.innerHTML = `
-      <button class="btn-prev" onclick="goBack()" ${si === 0 ? 'style="visibility:hidden"' : ''}>
-        ← Précédent
-      </button>
-      <span class="nav-progress-text">${si + 1} / ${sections.length}</span>
-      <button class="btn-next ${isLast ? 'btn-submit' : ''}" onclick="${isLast ? 'submitQuiz()' : 'goNext()'}">
-        ${isLast ? 'Envoyer mes réponses →' : 'Suivant →'}
-      </button>
-    `;
-    screen.appendChild(nav);
+
+    if (isLast) {
+      // Last section: submit button
+      const submitBlock = document.createElement('div');
+      submitBlock.className = 'submit-block';
+      submitBlock.innerHTML = `
+        <span class="submit-hint">Dernière étape</span>
+        <button class="btn-submit" onclick="submitQuiz()">
+          Envoyer mes réponses
+          <span class="btn-arrow"></span>
+        </button>
+      `;
+      screen.appendChild(submitBlock);
+    } else {
+      // All other sections: scroll hint
+      const hint = document.createElement('div');
+      hint.className = 'scroll-hint';
+      hint.onclick = () => goNext();
+      hint.innerHTML = `
+        <span class="scroll-hint-text">Défiler pour continuer</span>
+        <div class="scroll-chevron-wrap">
+          <div class="scroll-chevron"></div>
+          <div class="scroll-chevron"></div>
+          <div class="scroll-chevron"></div>
+        </div>
+      `;
+      screen.appendChild(hint);
+    }
   });
 }
 
@@ -901,18 +937,15 @@ function toggleOpt(item, q, oi, si) {
   optionStates[qid][oi] = !current;
   item.classList.toggle('checked', !current);
 
-  // Sub input toggle
   const subEl = document.getElementById(`${qid}-other-${oi}`);
   if (subEl) subEl.classList.toggle('visible', !current);
 
-  // Conditional card toggle
   const s = sections[si];
   if (s && q.subtext && q.subtext[oi]) {
     const condCard = document.getElementById(`cond-${q.subtext[oi]}`);
     if (condCard) condCard.style.display = optionStates[qid][oi] ? 'block' : 'none';
   }
 
-  // Save response
   const selected = q.options.filter((_, i) => optionStates[qid][i]);
   responses[qid] = selected;
 }
@@ -931,7 +964,6 @@ function showSection(idx) {
   }
   currentSection = idx;
 
-  // Scroll progress bar to active step
   const activeStep = document.getElementById(`step-${idx}`);
   if (activeStep) activeStep.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 }
@@ -945,7 +977,6 @@ function goBack() {
 }
 
 function submitQuiz() {
-  // Collect remaining field values
   document.querySelectorAll('.field-input').forEach(el => {
     if (el.id) responses[el.id] = el.value;
   });
@@ -1045,7 +1076,7 @@ function buildTextSummary() {
     q28: 'Priorité 3m', q29: 'Ambition 12m', q30: 'Projets'
   };
 
-  let lines = ['AUDIT DIGITAL CAFFITALY — RÉPONSES', '=' . repeat(40), ''];
+  let lines = ['AUDIT DIGITAL CAFFITALY — RÉPONSES', '='.repeat(40), ''];
   sections.forEach(s => {
     lines.push(`\n── ${s.title.toUpperCase()} ──`);
     s.questions.forEach(q => {
