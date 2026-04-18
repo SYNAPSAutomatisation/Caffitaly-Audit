@@ -46,7 +46,6 @@
     padding: 0 24px;
   }
 
-  /* ─── HEADER ─────────────────────────────────── */
   header {
     display: flex; align-items: center; justify-content: space-between;
     padding: 28px 40px;
@@ -65,7 +64,6 @@
     color: var(--muted); letter-spacing: 0.08em;
   }
 
-  /* ─── PROGRESS ───────────────────────────────── */
   .progress-wrap {
     padding: 0 40px;
     border-bottom: 1px solid var(--border);
@@ -112,7 +110,6 @@
   .step-item.done .step-label { color: rgba(245,240,232,0.55); }
   .step-item.done { border-bottom-color: var(--blue); }
 
-  /* ─── SCREENS ────────────────────────────────── */
   .screen { display: none; animation: fadeUp 0.4s ease; }
   .screen.active { display: block; }
 
@@ -121,7 +118,6 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ─── WELCOME ────────────────────────────────── */
   #screen-welcome {
     text-align: center;
     padding: 80px 40px 60px;
@@ -199,7 +195,6 @@
     flex-shrink: 0;
   }
 
-  /* ─── SECTION SCREENS ───────────────────────── */
   .section-screen {
     padding: 56px 40px 0;
     min-height: calc(100vh - 140px);
@@ -228,7 +223,6 @@
     flex: 1; display: flex; flex-direction: column; gap: 32px;
   }
 
-  /* ─── IDENTITY FIELDS ───────────────────────── */
   .field-group {
     display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
   }
@@ -259,7 +253,6 @@
 
   textarea.field-input { resize: vertical; min-height: 80px; }
 
-  /* ─── QUESTION CARD ──────────────────────────── */
   .q-card {
     background: var(--section-bg);
     border: 1px solid var(--border);
@@ -279,7 +272,6 @@
     margin-bottom: 6px; display: block;
   }
 
-  /* ─── CHECKBOXES / RADIO ─────────────────────── */
   .options-list { display: flex; flex-direction: column; gap: 8px; }
 
   .opt-item {
@@ -335,14 +327,9 @@
 
   .opt-item.checked { border-color: rgba(201,150,61,0.3); background: rgba(201,150,61,0.06); }
 
-  .opt-text {
-    font-size: 13px; font-weight: 300; color: var(--cream); line-height: 1.4;
-  }
-
   .opt-sub-input { display: none; margin-top: 8px; margin-left: 30px; }
   .opt-sub-input.visible { display: block; }
 
-  /* ─── NOTE BOX ───────────────────────────────── */
   .note-box {
     background: rgba(46,134,171,0.08);
     border-left: 3px solid var(--blue);
@@ -354,7 +341,6 @@
     margin-top: -8px;
   }
 
-  /* ─── SCROLL HINT ────────────────────────────── */
   .scroll-hint {
     display: flex;
     flex-direction: column;
@@ -393,22 +379,14 @@
     animation: bounce 1.6s ease-in-out infinite;
   }
 
-  .scroll-chevron:nth-child(2) {
-    animation-delay: 0.18s;
-    opacity: 0.55;
-  }
-
-  .scroll-chevron:nth-child(3) {
-    animation-delay: 0.36s;
-    opacity: 0.25;
-  }
+  .scroll-chevron:nth-child(2) { animation-delay: 0.18s; opacity: 0.55; }
+  .scroll-chevron:nth-child(3) { animation-delay: 0.36s; opacity: 0.25; }
 
   @keyframes bounce {
     0%, 60%, 100% { transform: rotate(45deg) translateY(0); }
     30%            { transform: rotate(45deg) translateY(5px); }
   }
 
-  /* ─── SUBMIT BLOCK ───────────────────────────── */
   .submit-block {
     display: flex;
     flex-direction: column;
@@ -438,8 +416,8 @@
 
   .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
   .btn-submit:active { transform: translateY(0); }
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-  /* ─── THANK YOU SCREEN ───────────────────────── */
   #screen-done {
     padding: 80px 40px;
     text-align: center;
@@ -498,10 +476,7 @@
     padding-left: 12px; position: relative;
   }
 
-  .summary-line::before {
-    content: '–';
-    position: absolute; left: 0; color: var(--muted);
-  }
+  .summary-line::before { content: '–'; position: absolute; left: 0; color: var(--muted); }
 
   .btn-copy {
     display: inline-flex; align-items: center; gap: 10px;
@@ -516,7 +491,33 @@
 
   .btn-copy:hover { border-color: var(--gold); color: var(--gold); }
 
-  /* ─── RESPONSIVE ─────────────────────────────── */
+  /* ── Sending overlay ── */
+  #sending-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(13,27,42,0.88);
+    z-index: 999;
+    align-items: center; justify-content: center;
+    flex-direction: column; gap: 20px;
+  }
+
+  #sending-overlay.visible { display: flex; }
+
+  .sending-spinner {
+    width: 48px; height: 48px;
+    border: 2px solid var(--border);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .sending-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 300; color: var(--cream);
+  }
+
   @media (max-width: 600px) {
     header { padding: 20px; }
     .progress-wrap { padding: 0 20px; }
@@ -531,6 +532,12 @@
 </style>
 </head>
 <body>
+
+<!-- Overlay envoi -->
+<div id="sending-overlay">
+  <div class="sending-spinner"></div>
+  <div class="sending-text">Envoi en cours…</div>
+</div>
 
 <header>
   <div class="logo">Synaps</div>
@@ -570,7 +577,6 @@
   </div>
 </div>
 
-<!-- SECTIONS rendered by JS -->
 <div id="sections-container"></div>
 
 <!-- DONE -->
@@ -588,6 +594,10 @@
 </div>
 
 <script>
+// ─── WEBHOOK MAKE ───────────────────────────────────────────────────────────
+const MAKE_WEBHOOK = 'https://hook.eu1.make.com/w2yy41mputuocjvkd37jj2nrj58cx6bc';
+// ───────────────────────────────────────────────────────────────────────────
+
 const sections = [
   {
     id: 'identity',
@@ -871,23 +881,20 @@ function buildSections() {
       }
     });
 
-    // ── Scroll hint or submit block (replaces old nav-bar) ──
     const isLast = si === sections.length - 1;
 
     if (isLast) {
-      // Last section: submit button
       const submitBlock = document.createElement('div');
       submitBlock.className = 'submit-block';
       submitBlock.innerHTML = `
         <span class="submit-hint">Dernière étape</span>
-        <button class="btn-submit" onclick="submitQuiz()">
+        <button class="btn-submit" id="btn-submit-final" onclick="submitQuiz()">
           Envoyer mes réponses
           <span class="btn-arrow"></span>
         </button>
       `;
       screen.appendChild(submitBlock);
     } else {
-      // All other sections: scroll hint
       const hint = document.createElement('div');
       hint.className = 'scroll-hint';
       hint.onclick = () => goNext();
@@ -927,9 +934,7 @@ function toggleOpt(item, q, oi, si) {
   if (!optionStates[qid]) optionStates[qid] = {};
 
   if (q.type === 'radio') {
-    document.querySelectorAll(`[data-qid="${qid}"]`).forEach(el => {
-      el.classList.remove('checked');
-    });
+    document.querySelectorAll(`[data-qid="${qid}"]`).forEach(el => el.classList.remove('checked'));
     Object.keys(optionStates[qid]).forEach(k => optionStates[qid][k] = false);
   }
 
@@ -963,7 +968,6 @@ function showSection(idx) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   currentSection = idx;
-
   const activeStep = document.getElementById(`step-${idx}`);
   if (activeStep) activeStep.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 }
@@ -976,21 +980,46 @@ function goBack() {
   if (currentSection > 0) showSection(currentSection - 1);
 }
 
-function submitQuiz() {
+// ─── ENVOI WEBHOOK MAKE ──────────────────────────────────────────────────────
+async function submitQuiz() {
+  // 1. Collecter tous les champs texte/textarea
   document.querySelectorAll('.field-input').forEach(el => {
     if (el.id) responses[el.id] = el.value;
   });
   document.querySelectorAll('textarea.field-input').forEach(el => {
-    if (el.id) responses[el.id.replace('-ta','')] = el.value;
+    if (el.id) responses[el.id.replace('-ta', '')] = el.value;
   });
 
-  buildSummary();
+  // 2. Désactiver le bouton + afficher overlay
+  const btn = document.getElementById('btn-submit-final');
+  if (btn) btn.disabled = true;
+  document.getElementById('sending-overlay').classList.add('visible');
 
+  // 3. Envoyer les réponses au webhook Make
+  try {
+    await fetch(MAKE_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        source: 'Audit Caffitaly',
+        timestamp: new Date().toISOString(),
+        reponses: responses
+      })
+    });
+  } catch (err) {
+    console.warn('Webhook Make non joignable (CORS possible en local) :', err.message);
+    // On continue quand même pour afficher la page de remerciement
+  }
+
+  // 4. Afficher l'écran de confirmation
+  document.getElementById('sending-overlay').classList.remove('visible');
+  buildSummary();
   document.querySelectorAll('.section-screen').forEach(s => s.classList.remove('active'));
   document.getElementById('progress-bar').style.display = 'none';
   document.getElementById('screen-done').classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('screen-done').scrollIntoView({ behavior: 'smooth' });
 }
+// ────────────────────────────────────────────────────────────────────────────
 
 function buildSummary() {
   const box = document.getElementById('summary-content');
@@ -1008,12 +1037,7 @@ function buildSummary() {
     f_pain1: 'Irritant n°1', f_pain2: 'Irritant n°2', f_pain3: 'Irritant n°3',
     q28: 'Priorité 3 mois', q29: 'Ambition 12 mois', q30: 'Projets en cours'
   };
-
-  const sectionLabels = [
-    'Identité', 'Outils', 'Clients', 'Vente', 'Acquisition',
-    'Fidélisation', 'Stock', 'Web', 'Ambitions'
-  ];
-
+  const sectionLabels = ['Identité', 'Outils', 'Clients', 'Vente', 'Acquisition', 'Fidélisation', 'Stock', 'Web', 'Ambitions'];
   let html = '';
   sections.forEach((s, si) => {
     const keys = [];
@@ -1021,7 +1045,6 @@ function buildSummary() {
       if (q.type === 'fields') q.fields.forEach(f => keys.push(f.id));
       else if (q.id) keys.push(q.id);
     });
-
     const lines = keys.map(k => {
       const v = responses[k];
       if (!v || (Array.isArray(v) && v.length === 0)) return null;
@@ -1029,7 +1052,6 @@ function buildSummary() {
       const val = Array.isArray(v) ? v.join(', ') : v;
       return `<div class="summary-line"><strong>${label}</strong> : ${val}</div>`;
     }).filter(Boolean);
-
     if (lines.length) {
       html += `<div class="summary-section">
         <div class="summary-section-title">${sectionLabels[si] || s.title}</div>
@@ -1037,7 +1059,6 @@ function buildSummary() {
       </div>`;
     }
   });
-
   box.innerHTML = html || '<p style="color: var(--muted); font-size:13px;">Aucune réponse saisie.</p>';
 }
 
@@ -1075,7 +1096,6 @@ function buildTextSummary() {
     f_pain1: 'Irritant 1', f_pain2: 'Irritant 2', f_pain3: 'Irritant 3',
     q28: 'Priorité 3m', q29: 'Ambition 12m', q30: 'Projets'
   };
-
   let lines = ['AUDIT DIGITAL CAFFITALY — RÉPONSES', '='.repeat(40), ''];
   sections.forEach(s => {
     lines.push(`\n── ${s.title.toUpperCase()} ──`);
