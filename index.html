@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audit Digital — Caffitaly × Synaps</title>
+<title>Audit Digital — Caf'Entreprise × Synaps</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,6 +32,7 @@
     overflow-x: hidden;
   }
 
+  /* Subtle grain texture overlay */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -46,6 +47,7 @@
     padding: 0 24px;
   }
 
+  /* ─── HEADER ─────────────────────────────────── */
   header {
     display: flex; align-items: center; justify-content: space-between;
     padding: 28px 40px;
@@ -64,6 +66,7 @@
     color: var(--muted); letter-spacing: 0.08em;
   }
 
+  /* ─── PROGRESS ───────────────────────────────── */
   .progress-wrap {
     padding: 0 40px;
     border-bottom: 1px solid var(--border);
@@ -102,7 +105,9 @@
     transition: color 0.25s;
   }
 
-  .step-item.active { border-bottom-color: var(--gold); }
+  .step-item.active {
+    border-bottom-color: var(--gold);
+  }
   .step-item.active .step-num { color: var(--gold); }
   .step-item.active .step-label { color: var(--cream); }
 
@@ -110,14 +115,17 @@
   .step-item.done .step-label { color: rgba(245,240,232,0.55); }
   .step-item.done { border-bottom-color: var(--blue); }
 
+  /* ─── SCREENS ────────────────────────────────── */
   .screen { display: none; animation: fadeUp 0.4s ease; }
   .screen.active { display: block; }
+  .section-screen.active { display: flex; }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* ─── WELCOME ────────────────────────────────── */
   #screen-welcome {
     text-align: center;
     padding: 80px 40px 60px;
@@ -142,7 +150,9 @@
     margin-bottom: 16px;
   }
 
-  .welcome-title em { font-style: italic; color: var(--gold-light); }
+  .welcome-title em {
+    font-style: italic; color: var(--gold-light);
+  }
 
   .welcome-sub {
     font-size: 15px; font-weight: 300; color: var(--muted);
@@ -154,7 +164,9 @@
     margin-bottom: 56px;
   }
 
-  .meta-item { text-align: center; }
+  .meta-item {
+    text-align: center;
+  }
 
   .meta-num {
     font-family: 'Cormorant Garamond', serif;
@@ -195,13 +207,16 @@
     flex-shrink: 0;
   }
 
+  /* ─── SECTION SCREENS ───────────────────────── */
   .section-screen {
-    padding: 56px 40px 0;
+    padding: 56px 40px 40px;
     min-height: calc(100vh - 140px);
-    display: flex; flex-direction: column;
+    flex-direction: column;
   }
 
-  .section-header { margin-bottom: 40px; }
+  .section-header {
+    margin-bottom: 40px;
+  }
 
   .section-eyebrow {
     font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
@@ -223,6 +238,7 @@
     flex: 1; display: flex; flex-direction: column; gap: 32px;
   }
 
+  /* ─── IDENTITY FIELDS ───────────────────────── */
   .field-group {
     display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
   }
@@ -253,6 +269,7 @@
 
   textarea.field-input { resize: vertical; min-height: 80px; }
 
+  /* ─── QUESTION CARD ──────────────────────────── */
   .q-card {
     background: var(--section-bg);
     border: 1px solid var(--border);
@@ -272,6 +289,7 @@
     margin-bottom: 6px; display: block;
   }
 
+  /* ─── CHECKBOXES / RADIO ─────────────────────── */
   .options-list { display: flex; flex-direction: column; gap: 8px; }
 
   .opt-item {
@@ -286,7 +304,9 @@
   .opt-item:hover { background: rgba(201,150,61,0.06); border-color: var(--border); }
 
   .opt-item input[type=checkbox],
-  .opt-item input[type=radio] { display: none; }
+  .opt-item input[type=radio] {
+    display: none;
+  }
 
   .opt-box {
     width: 18px; height: 18px; flex-shrink: 0;
@@ -327,9 +347,17 @@
 
   .opt-item.checked { border-color: rgba(201,150,61,0.3); background: rgba(201,150,61,0.06); }
 
-  .opt-sub-input { display: none; margin-top: 8px; margin-left: 30px; }
+  .opt-text {
+    font-size: 13px; font-weight: 300; color: var(--cream); line-height: 1.4;
+  }
+
+  .opt-sub-input {
+    display: none; margin-top: 8px; margin-left: 30px;
+  }
+
   .opt-sub-input.visible { display: block; }
 
+  /* ─── NOTE BOX ───────────────────────────────── */
   .note-box {
     background: rgba(46,134,171,0.08);
     border-left: 3px solid var(--blue);
@@ -341,83 +369,57 @@
     margin-top: -8px;
   }
 
-  .scroll-hint {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 36px 40px 44px;
+  /* ─── NAV BUTTONS ────────────────────────────── */
+  .nav-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 32px 40px 40px;
     border-top: 1px solid var(--border);
-    margin-top: 40px;
-    cursor: pointer;
-    opacity: 0.55;
-    transition: opacity 0.25s;
-    user-select: none;
+    margin-top: auto;
   }
 
-  .scroll-hint:hover { opacity: 1; }
-
-  .scroll-hint-text {
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .scroll-chevron-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .scroll-chevron {
-    width: 14px; height: 14px;
-    border-right: 1.5px solid var(--gold);
-    border-bottom: 1.5px solid var(--gold);
-    transform: rotate(45deg);
-    animation: bounce 1.6s ease-in-out infinite;
-  }
-
-  .scroll-chevron:nth-child(2) { animation-delay: 0.18s; opacity: 0.55; }
-  .scroll-chevron:nth-child(3) { animation-delay: 0.36s; opacity: 0.25; }
-
-  @keyframes bounce {
-    0%, 60%, 100% { transform: rotate(45deg) translateY(0); }
-    30%            { transform: rotate(45deg) translateY(5px); }
-  }
-
-  .submit-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    padding: 36px 40px 48px;
-    border-top: 1px solid var(--border);
-    margin-top: 40px;
-  }
-
-  .submit-hint {
-    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  .btn-prev {
+    display: flex; align-items: center; gap: 10px;
+    background: transparent;
+    border: 1px solid var(--border);
     color: var(--muted);
-  }
-
-  .btn-submit {
-    display: inline-flex; align-items: center; gap: 12px;
-    background: var(--gold);
-    color: var(--espresso);
     font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 500; letter-spacing: 0.06em;
-    padding: 16px 40px;
-    border: none; cursor: pointer;
+    font-size: 13px; font-weight: 400;
+    padding: 12px 24px; cursor: pointer;
     border-radius: 2px;
     transition: all 0.2s;
   }
 
-  .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .btn-submit:active { transform: translateY(0); }
-  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .btn-prev:hover { border-color: var(--gold); color: var(--gold); }
 
+  .btn-next {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--navy);
+    border: 1px solid rgba(46,134,171,0.4);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 400;
+    padding: 12px 28px; cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .btn-next:hover { background: var(--blue); border-color: var(--blue); }
+
+  .btn-submit {
+    background: var(--gold);
+    color: var(--espresso);
+    border-color: var(--gold);
+    font-weight: 500;
+  }
+
+  .btn-submit:hover { background: var(--gold-light); }
+
+  .nav-progress-text {
+    font-size: 11px; letter-spacing: 0.1em;
+    color: var(--muted); text-transform: uppercase;
+  }
+
+  /* ─── THANK YOU SCREEN ───────────────────────── */
   #screen-done {
     padding: 80px 40px;
     text-align: center;
@@ -476,7 +478,10 @@
     padding-left: 12px; position: relative;
   }
 
-  .summary-line::before { content: '–'; position: absolute; left: 0; color: var(--muted); }
+  .summary-line::before {
+    content: '–';
+    position: absolute; left: 0; color: var(--muted);
+  }
 
   .btn-copy {
     display: inline-flex; align-items: center; gap: 10px;
@@ -491,38 +496,12 @@
 
   .btn-copy:hover { border-color: var(--gold); color: var(--gold); }
 
-  /* ── Sending overlay ── */
-  #sending-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(13,27,42,0.88);
-    z-index: 999;
-    align-items: center; justify-content: center;
-    flex-direction: column; gap: 20px;
-  }
-
-  #sending-overlay.visible { display: flex; }
-
-  .sending-spinner {
-    width: 48px; height: 48px;
-    border: 2px solid var(--border);
-    border-top-color: var(--gold);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
-
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .sending-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-weight: 300; color: var(--cream);
-  }
-
+  /* ─── RESPONSIVE ─────────────────────────────── */
   @media (max-width: 600px) {
     header { padding: 20px; }
     .progress-wrap { padding: 0 20px; }
-    .section-screen, #screen-done, #screen-welcome { padding: 40px 20px 0; }
-    .scroll-hint, .submit-block { padding: 28px 20px 36px; }
+    .section-screen, #screen-done, #screen-welcome { padding: 40px 20px 32px; }
+    .nav-bar { padding: 24px 20px; }
     .field-group { grid-template-columns: 1fr; }
     .welcome-title { font-size: 40px; }
     .section-title { font-size: 30px; }
@@ -533,15 +512,9 @@
 </head>
 <body>
 
-<!-- Overlay envoi -->
-<div id="sending-overlay">
-  <div class="sending-spinner"></div>
-  <div class="sending-text">Envoi en cours…</div>
-</div>
-
 <header>
   <div class="logo">Synaps</div>
-  <div class="brand-tag">Audit Digital — Caffitaly</div>
+  <div class="brand-tag">Audit Digital — Caf'Entreprise</div>
 </header>
 
 <div class="progress-wrap" id="progress-bar" style="display:none;">
@@ -552,7 +525,7 @@
 <div class="screen active" id="screen-welcome">
   <div class="container">
     <div class="welcome-eyebrow">Synaps Automatisation</div>
-    <h1 class="welcome-title">État des lieux<br><em>Caffitaly</em></h1>
+    <h1 class="welcome-title">État des lieux<br><em>Caf'Entreprise</em></h1>
     <p class="welcome-sub">Ce questionnaire vous permettra de faire le point sur votre organisation digitale. Comptez environ 20 à 30 minutes. Vos réponses resteront confidentielles.</p>
     <div class="welcome-meta">
       <div class="meta-item">
@@ -577,6 +550,7 @@
   </div>
 </div>
 
+<!-- SECTIONS rendered by JS -->
 <div id="sections-container"></div>
 
 <!-- DONE -->
@@ -594,10 +568,6 @@
 </div>
 
 <script>
-// ─── WEBHOOK MAKE ───────────────────────────────────────────────────────────
-const MAKE_WEBHOOK = 'https://hook.eu1.make.com/w2yy41mputuocjvkd37jj2nrj58cx6bc';
-// ───────────────────────────────────────────────────────────────────────────
-
 const sections = [
   {
     id: 'identity',
@@ -606,7 +576,7 @@ const sections = [
     desc: 'Quelques informations générales pour commencer.',
     questions: [
       { type: 'fields', label: '', fields: [
-        { id: 'f_nom', label: 'Nom de l\'entreprise', placeholder: 'Caffitaly France', full: false },
+        { id: 'f_nom', label: 'Nom de l\'entreprise', placeholder: "Caf'Entreprise", full: false },
         { id: 'f_dirigeant', label: 'Nom du dirigeant', placeholder: 'Prénom Nom', full: false },
         { id: 'f_creation', label: 'Année de création', placeholder: '2015', full: false },
         { id: 'f_effectif', label: 'Nombre de collaborateurs', placeholder: '5', full: false },
@@ -657,7 +627,7 @@ const sections = [
     title: 'Vente & processus',
     desc: 'Le parcours de vente, de la prise de contact à la livraison.',
     questions: [
-      { id: 'q9', type: 'textarea', label: 'Décrivez les grandes étapes d\'une vente typique chez Caffitaly (prise de contact → livraison) :',
+      { id: 'q9', type: 'textarea', label: 'Décrivez les grandes étapes d\'une vente typique chez Caf\'Entreprise (prise de contact → livraison) :',
         placeholder: 'Ex : contact par téléphone → démo → devis par email → commande → livraison...' },
       { id: 'q10', type: 'checkbox', label: 'Proposez-vous des abonnements ou réassorts réguliers en capsules ?',
         options: ['Non, vente à l\'acte uniquement', 'Oui, sur demande du client', 'Oui, avec un système automatique', 'C\'est quelque chose que j\'aimerais mettre en place'] },
@@ -730,13 +700,14 @@ const sections = [
         options: ['Non', 'Oui, mais ancien / pas mis à jour', 'Oui, actif et à jour'],
         subtext: [null, 'q23_url', 'q23_url'] },
       { id: 'q23_url', type: 'fields', conditional: true, fields: [
-        { id: 'f_url', label: 'URL du site', placeholder: 'www.caffitaly.fr', full: true }
+        { id: 'f_url', label: 'URL du site', placeholder: 'www.cafentreprise.fr', full: true }
       ]},
       { id: 'q24', type: 'radio', label: 'Avez-vous une fiche Google Business (apparaissez-vous sur Google Maps) ?',
         options: ['Non', 'Oui, mais je ne la gère pas', 'Oui, je la mets à jour régulièrement'] },
       { id: 'q25', type: 'checkbox', label: 'Êtes-vous présent sur les réseaux sociaux ?',
         options: ['Non', 'Facebook', 'Instagram', 'LinkedIn', 'Autre'],
-        other: [4] },
+        other: [4],
+        subtext: [null, null, null, null, null] },
       { id: 'q26', type: 'radio', label: 'Avez-vous une newsletter ou liste email pour communiquer avec vos clients ?',
         options: ['Non', 'Oui, mais peu utilisée', 'Oui, régulièrement'] }
     ]
@@ -754,7 +725,7 @@ const sections = [
       ]},
       { id: 'q28', type: 'textarea', label: 'Si vous pouviez améliorer une seule chose dans les 3 prochains mois, ce serait quoi ?',
         placeholder: 'Réponse libre...' },
-      { id: 'q29', type: 'textarea', label: 'Quelle est votre ambition pour Caffitaly sur les 6 à 12 prochains mois ? (CA, clients, expansion...)',
+      { id: 'q29', type: 'textarea', label: 'Quelle est votre ambition pour Caf\'Entreprise sur les 6 à 12 prochains mois ? (CA, clients, expansion...)',
         placeholder: 'Réponse libre...' },
       { id: 'q30', type: 'textarea', label: 'Y a-t-il des projets en cours ou prévus dont je devrais avoir connaissance ?',
         placeholder: 'Nouveau site, produit, recrutement...' }
@@ -855,6 +826,7 @@ function buildSections() {
           }
         });
 
+        // Handle conditional questions triggered by checkboxes
         if (q.subtext) {
           q.subtext.forEach((condId, oi) => {
             if (condId) {
@@ -881,33 +853,20 @@ function buildSections() {
       }
     });
 
+    // Nav bar
+    const nav = document.createElement('div');
+    nav.className = 'nav-bar';
     const isLast = si === sections.length - 1;
-
-    if (isLast) {
-      const submitBlock = document.createElement('div');
-      submitBlock.className = 'submit-block';
-      submitBlock.innerHTML = `
-        <span class="submit-hint">Dernière étape</span>
-        <button class="btn-submit" id="btn-submit-final" onclick="submitQuiz()">
-          Envoyer mes réponses
-          <span class="btn-arrow"></span>
-        </button>
-      `;
-      screen.appendChild(submitBlock);
-    } else {
-      const hint = document.createElement('div');
-      hint.className = 'scroll-hint';
-      hint.onclick = () => goNext();
-      hint.innerHTML = `
-        <span class="scroll-hint-text">Défiler pour continuer</span>
-        <div class="scroll-chevron-wrap">
-          <div class="scroll-chevron"></div>
-          <div class="scroll-chevron"></div>
-          <div class="scroll-chevron"></div>
-        </div>
-      `;
-      screen.appendChild(hint);
-    }
+    nav.innerHTML = `
+      <button class="btn-prev" onclick="goBack()" ${si === 0 ? 'style="visibility:hidden"' : ''}>
+        ← Précédent
+      </button>
+      <span class="nav-progress-text">${si + 1} / ${sections.length}</span>
+      <button class="btn-next ${isLast ? 'btn-submit' : ''}" onclick="${isLast ? 'submitQuiz()' : 'goNext()'}">
+        ${isLast ? 'Envoyer mes réponses →' : 'Suivant →'}
+      </button>
+    `;
+    screen.appendChild(nav);
   });
 }
 
@@ -934,7 +893,9 @@ function toggleOpt(item, q, oi, si) {
   if (!optionStates[qid]) optionStates[qid] = {};
 
   if (q.type === 'radio') {
-    document.querySelectorAll(`[data-qid="${qid}"]`).forEach(el => el.classList.remove('checked'));
+    document.querySelectorAll(`[data-qid="${qid}"]`).forEach(el => {
+      el.classList.remove('checked');
+    });
     Object.keys(optionStates[qid]).forEach(k => optionStates[qid][k] = false);
   }
 
@@ -942,15 +903,18 @@ function toggleOpt(item, q, oi, si) {
   optionStates[qid][oi] = !current;
   item.classList.toggle('checked', !current);
 
+  // Sub input toggle
   const subEl = document.getElementById(`${qid}-other-${oi}`);
   if (subEl) subEl.classList.toggle('visible', !current);
 
+  // Conditional card toggle
   const s = sections[si];
   if (s && q.subtext && q.subtext[oi]) {
     const condCard = document.getElementById(`cond-${q.subtext[oi]}`);
     if (condCard) condCard.style.display = optionStates[qid][oi] ? 'block' : 'none';
   }
 
+  // Save response
   const selected = q.options.filter((_, i) => optionStates[qid][i]);
   responses[qid] = selected;
 }
@@ -968,6 +932,8 @@ function showSection(idx) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   currentSection = idx;
+
+  // Scroll progress bar to active step
   const activeStep = document.getElementById(`step-${idx}`);
   if (activeStep) activeStep.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 }
@@ -980,46 +946,22 @@ function goBack() {
   if (currentSection > 0) showSection(currentSection - 1);
 }
 
-// ─── ENVOI WEBHOOK MAKE ──────────────────────────────────────────────────────
-async function submitQuiz() {
-  // 1. Collecter tous les champs texte/textarea
+function submitQuiz() {
+  // Collect remaining field values
   document.querySelectorAll('.field-input').forEach(el => {
     if (el.id) responses[el.id] = el.value;
   });
   document.querySelectorAll('textarea.field-input').forEach(el => {
-    if (el.id) responses[el.id.replace('-ta', '')] = el.value;
+    if (el.id) responses[el.id.replace('-ta','')] = el.value;
   });
 
-  // 2. Désactiver le bouton + afficher overlay
-  const btn = document.getElementById('btn-submit-final');
-  if (btn) btn.disabled = true;
-  document.getElementById('sending-overlay').classList.add('visible');
-
-  // 3. Envoyer les réponses au webhook Make
-  try {
-    await fetch(MAKE_WEBHOOK, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        source: 'Audit Caffitaly',
-        timestamp: new Date().toISOString(),
-        reponses: responses
-      })
-    });
-  } catch (err) {
-    console.warn('Webhook Make non joignable (CORS possible en local) :', err.message);
-    // On continue quand même pour afficher la page de remerciement
-  }
-
-  // 4. Afficher l'écran de confirmation
-  document.getElementById('sending-overlay').classList.remove('visible');
   buildSummary();
+
   document.querySelectorAll('.section-screen').forEach(s => s.classList.remove('active'));
   document.getElementById('progress-bar').style.display = 'none';
   document.getElementById('screen-done').classList.add('active');
-  document.getElementById('screen-done').scrollIntoView({ behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-// ────────────────────────────────────────────────────────────────────────────
 
 function buildSummary() {
   const box = document.getElementById('summary-content');
@@ -1037,7 +979,12 @@ function buildSummary() {
     f_pain1: 'Irritant n°1', f_pain2: 'Irritant n°2', f_pain3: 'Irritant n°3',
     q28: 'Priorité 3 mois', q29: 'Ambition 12 mois', q30: 'Projets en cours'
   };
-  const sectionLabels = ['Identité', 'Outils', 'Clients', 'Vente', 'Acquisition', 'Fidélisation', 'Stock', 'Web', 'Ambitions'];
+
+  const sectionLabels = [
+    'Identité', 'Outils', 'Clients', 'Vente', 'Acquisition',
+    'Fidélisation', 'Stock', 'Web', 'Ambitions'
+  ];
+
   let html = '';
   sections.forEach((s, si) => {
     const keys = [];
@@ -1045,6 +992,7 @@ function buildSummary() {
       if (q.type === 'fields') q.fields.forEach(f => keys.push(f.id));
       else if (q.id) keys.push(q.id);
     });
+
     const lines = keys.map(k => {
       const v = responses[k];
       if (!v || (Array.isArray(v) && v.length === 0)) return null;
@@ -1052,6 +1000,7 @@ function buildSummary() {
       const val = Array.isArray(v) ? v.join(', ') : v;
       return `<div class="summary-line"><strong>${label}</strong> : ${val}</div>`;
     }).filter(Boolean);
+
     if (lines.length) {
       html += `<div class="summary-section">
         <div class="summary-section-title">${sectionLabels[si] || s.title}</div>
@@ -1059,6 +1008,7 @@ function buildSummary() {
       </div>`;
     }
   });
+
   box.innerHTML = html || '<p style="color: var(--muted); font-size:13px;">Aucune réponse saisie.</p>';
 }
 
@@ -1077,7 +1027,7 @@ function downloadResponses() {
   const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = 'Audit_Caffitaly_Reponses.txt';
+  a.href = url; a.download = 'Audit_CafEntreprise_Reponses.txt';
   a.click(); URL.revokeObjectURL(url);
 }
 
@@ -1096,7 +1046,8 @@ function buildTextSummary() {
     f_pain1: 'Irritant 1', f_pain2: 'Irritant 2', f_pain3: 'Irritant 3',
     q28: 'Priorité 3m', q29: 'Ambition 12m', q30: 'Projets'
   };
-  let lines = ['AUDIT DIGITAL CAFFITALY — RÉPONSES', '='.repeat(40), ''];
+
+  let lines = ["AUDIT DIGITAL CAF'ENTREPRISE — RÉPONSES", '='.repeat(40), ''];
   sections.forEach(s => {
     lines.push(`\n── ${s.title.toUpperCase()} ──`);
     s.questions.forEach(q => {
